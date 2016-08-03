@@ -5,3 +5,8 @@ body {
 .editor {
   height: 600px;
 }
+
+.testDecoration {
+  border-left: 3px solid blue;
+  margin-left: 3px;
+}
