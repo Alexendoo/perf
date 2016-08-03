@@ -1,0 +1,13 @@
+{
+  "name": "perf",
+  "version": "1.0.0",
+  "description": "Javascript client performance benchmarks",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alex Macleod <alex@macleod.io>",
+  "license": "MIT",
+  "dependencies": {
+    "monaco-editor": "^0.5.3"
+  }
+}
