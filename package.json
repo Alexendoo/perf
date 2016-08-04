@@ -8,6 +8,10 @@
   "author": "Alex Macleod <alex@macleod.io>",
   "license": "MIT",
   "dependencies": {
-    "monaco-editor": "^0.5.3"
+    "monaco-editor": "^0.5.3",
+    "string.prototype.startswith": "^0.2.0"
+  },
+  "devDependencies": {
+    "standard": "^7.1.2"
   }
 }
