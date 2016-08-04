@@ -56,26 +56,17 @@ function onEnter (editor) {
 
 /**
  * @param {monaco.editor.IModel} model
- * @param {number} startLine
+ * @param {monaco.IPosition} startPosition
+ * @param {function} range - callback returning a range covered by
+ *                           the next function from {@code start}
  */
-function highlightFunction (model, startLine) {
-  var endLine = startLine - 1
-  var eof = model.getFullModelRange().endLineNumber
+function getFunctionRange (model, startPosition, range) {
+  model.tokenIterator(startPosition, function (iterator) {
+    while (iterator.hasNext()) {
+      var tokenIteration = iterator.next()
+      var token = tokenIteration.token
 
-  var braces = 0
-
-  // TODO: replace with IModel.tokenIterator
-
-  do {
-    var line = model.getLineContent(++endLine)
-    var char = line.length
-
-    while (char--) {
-      if (line[char] === '{') braces++
-      else if (line[char] === '}') braces--
+      if (!token.type.startWith('delimiter')) continue
     }
-  } while (braces && endLine <= eof)
-
-  var range = new monaco.Range(startLine, 1, endLine, 1)
-  return range
+  })
 }
