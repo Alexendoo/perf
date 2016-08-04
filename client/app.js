@@ -66,7 +66,8 @@ function getFunctionRange (model, startPosition, range) {
       var tokenIteration = iterator.next()
       var token = tokenIteration.token
 
-      if (!token.type.startWith('delimiter')) continue
+      if (!token.type.startsWith('delimiter')) continue
+      console.log(token)
     }
   })
 }
