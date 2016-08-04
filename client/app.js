@@ -63,11 +63,21 @@ function onEnter (editor) {
 function getFunctionRange (model, startPosition, range) {
   model.tokenIterator(startPosition, function (iterator) {
     while (iterator.hasNext()) {
-      var tokenIteration = iterator.next()
-      var token = tokenIteration.token
+      var iteration = iterator.next()
+      var token = iteration.token
+      var type = token.type
 
-      if (!token.type.startsWith('delimiter')) continue
-      console.log(token)
+      if (!type.startsWith('delimiter')) continue
+      if (type === 'delimiter.parenthesis.js') skipBrackets(model, iterator, iteration)
     }
   })
+}
+
+function skipBrackets (model, iterator, iteration) {
+  var end = model.matchBracket({
+    lineNumber: iteration.lineNumber,
+    column: iteration.startColumn
+  })[1]
+  console.log(end, iteration, iterator)
+  // Iterate until position past {@code end}
 }
